@@ -1,0 +1,9 @@
+# WaruSmart-EmbeddedApp-Sensor-Simulated
+## Summary
+## Components
+- DHT-22
+- LED
+## Libraries
+- WiFi
+- HTTPClient
+- Arduino
