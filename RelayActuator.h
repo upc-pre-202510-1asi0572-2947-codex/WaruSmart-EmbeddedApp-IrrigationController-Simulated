@@ -3,46 +3,24 @@
 
 #include "ModestIoT.h"
 
-/**
- * @class RelayActuator
- * @brief Class to control a relay actuator.
- *
- * This class provides methods to control a relay connected to a specific pin
- * and check its current state.
- */
+/// @brief Relay actuator class that extends the base Actuator interface
 class RelayActuator : public Actuator {
 public:
-    /**
-     * @brief Constructor for the RelayActuator class.
-     *
-     * @param pin Pin connected to the relay actuator.
-     */
+    /// @brief Constructor
+    /// @param pin Digital output pin connected to the relay
     RelayActuator(int pin);
 
-    /**
-     * @brief Initializes the relay actuator by setting the pin mode to OUTPUT.
-     * Also, turns off the relay initially.
-     */
+    /// @brief Initializes the relay actuator by setting pin mode and default state
     void begin();
-
-    /**
-     * @brief Activates or deactivates the relay based on the given state.
-     *
-     * @param state true to activate the relay (turn ON), false to deactivate it (turn OFF).
-     */
+    
+    /// @brief Controls the relay state (ON/OFF)
+    /// @param state True to turn relay ON (close circuit), false to turn relay OFF (open circuit)
     void activate(bool state) override;
-
-    /**
-     * @brief Returns the current state of the relay.
-     *
-     * @return true if the relay is activated (ON), false if deactivated (OFF).
-     */
+    
+    /// @brief Returns the current state of the relay
+    /// @return True if relay is ON (closed), false if relay is OFF (open)
     bool getState() const;
 
 private:
-    int pin;               /**< Pin connected to the relay actuator */
-    bool lastState = false; /**< Last known state of the relay (ON/OFF) */
-};
-
-#endif
-
+    int pin;                    // Digital output pin connected to the relay
+    bool lastState = false;     // Last known state of the relay (default:

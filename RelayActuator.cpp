@@ -1,37 +1,24 @@
 #include "RelayActuator.h"
 #include <Arduino.h>
 
-/**
- * @brief Constructor for the RelayActuator class, initializes the pin.
- *
- * @param pin Pin connected to the relay actuator.
- */
+/// @brief Constructor
+/// @param pin Digital output pin connected to the relay
 RelayActuator::RelayActuator(int pin) : pin(pin) {}
 
-/**
- * @brief Initializes the relay actuator by setting the pin mode to OUTPUT.
- * Also, sets the initial state of the relay to OFF.
- */
+/// @brief Initializes the relay actuator by setting pin mode and default state
 void RelayActuator::begin() {
-    pinMode(pin, OUTPUT);  // Set the pin mode to OUTPUT
-    activate(false);       // Turn off the relay initially
+    pinMode(pin, OUTPUT);  // Configure pin as digital output
+    activate(false);       // Set initial state to OFF (relay open)
 }
 
-/**
- * @brief Activates or deactivates the relay based on the given state.
- *
- * @param state true to activate the relay (turn ON), false to deactivate it (turn OFF).
- */
+/// @brief Controls the relay state (ON/OFF)
+/// @param state True to turn relay ON (close circuit), false to turn relay OFF (open circuit)
 void RelayActuator::activate(bool state) {
-    digitalWrite(pin, state ? HIGH : LOW);  // Set the pin to HIGH (ON) or LOW (OFF) based on state
-    lastState = state;  // Store the last state
+    digitalWrite(pin, state ? HIGH : LOW);  // Write digital signal to pin
+    lastState = state;                      // Store current state for later retrieval
 }
 
-/**
- * @brief Returns the current state of the relay.
- *
- * @return true if the relay is activated (ON), false if deactivated (OFF).
- */
+/// @brief Returns the current state of the relay
+/// @return True if relay is ON (closed), false if relay is OFF (open)
 bool RelayActuator::getState() const {
-    return lastState;  // Return the last recorded state
-}
+    return lastState;  // Return the last

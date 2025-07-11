@@ -1,38 +1,24 @@
 #include "LedActuator.h"
 #include <Arduino.h>
 
-/**
- * @brief Constructor for the LedActuator class, initializes the pin.
- *
- * @param pin Pin connected to the LED actuator.
- */
+/// @brief Constructor
+/// @param pin Digital output pin connected to the LED
 LedActuator::LedActuator(int pin) : pin(pin) {}
 
-/**
- * @brief Initializes the LED actuator by setting the pin mode to OUTPUT.
- * Also, sets the initial state of the LED to OFF.
- */
+/// @brief Initializes the LED actuator by setting pin mode and default state
 void LedActuator::begin() {
-    pinMode(pin, OUTPUT);  // Set pin mode to OUTPUT
-    activate(false);       // Turn off LED initially
+    pinMode(pin, OUTPUT);  // Configure pin as digital output
+    activate(false);       // Set initial state to OFF
 }
 
-/**
- * @brief Activates or deactivates the LED based on the given state.
- *
- * @param state true to turn the LED on, false to turn it off.
- */
+/// @brief Controls the LED state (ON/OFF)
+/// @param state True to turn LED ON, false to turn LED OFF
 void LedActuator::activate(bool state) {
-    digitalWrite(pin, state ? HIGH : LOW);  // Set pin to HIGH or LOW based on state
-    lastState = state;  // Store the last state
+    digitalWrite(pin, state ? HIGH : LOW);  // Write digital signal to pin
+    lastState = state;                      // Store current state for later retrieval
 }
 
-/**
- * @brief Returns the current state of the LED.
- *
- * @return true if the LED is on, false if it is off.
- */
+/// @brief Returns the current state of the LED
+/// @return True if LED is ON, false if LED is OFF
 bool LedActuator::getState() const {
-    return lastState;  // Return the last recorded state
-}
-
+    return lastState;  // Return the last
