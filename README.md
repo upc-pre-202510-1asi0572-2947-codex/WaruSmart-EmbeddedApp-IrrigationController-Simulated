@@ -1,1 +1,0 @@
-# WaruSmart-EmbeddedApp-Sensor-Simulated
